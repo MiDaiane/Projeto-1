@@ -13,23 +13,23 @@ class EntityFactory:
     @staticmethod
     def get_entity(entity_name: str):
         match entity_name:
-            case 'Level1Bg':
+            case 'fase1':
                 list_bg = []
                 for i in range(7):  # level1bg images number
-                    list_bg.append(Background(f'Level1Bg{i}', (0, 0)))
-                    list_bg.append(Background(f'Level1Bg{i}', (WIN_WIDTH, 0)))
+                    list_bg.append(Background(f'fase1-{i}', (0, 0)))
+                    list_bg.append(Background(f'fase1-{i}', (WIN_WIDTH, 0)))
                 return list_bg
-            case 'Level2Bg':
+            case 'fase2':
                 list_bg = []
                 for i in range(5):  # level2bg images number
-                    list_bg.append(Background(f'Level2Bg{i}', (0, 0)))
-                    list_bg.append(Background(f'Level2Bg{i}', (WIN_WIDTH, 0)))
+                    list_bg.append(Background(f'fase2-{i}', (0, 0)))
+                    list_bg.append(Background(f'fase2-{i}', (WIN_WIDTH, 0)))
                 return list_bg
-            case 'Player1':
-                return Player('Player1', (10, WIN_HEIGHT / 2 - 30))
-            case 'Player2':
-                return Player('Player2', (10, WIN_HEIGHT / 2 + 30))
-            case 'Enemy1':
-                return Enemy('Enemy1', (WIN_WIDTH + 10, random.randint(40, WIN_HEIGHT - 40)))
-            case 'Enemy2':
-                return Enemy('Enemy2', (WIN_WIDTH + 10, random.randint(40, WIN_HEIGHT - 40)))
+            case 'jogador1':
+                return Player('jogador1', (10, WIN_HEIGHT / 2 - 30))
+            case 'jogador2':
+                return Player('jogador2', (10, WIN_HEIGHT / 2 + 30))
+            case 'assassino1':
+                return Enemy('assassino1', (WIN_WIDTH + 10, random.randint(40, WIN_HEIGHT - 40)))
+            case 'assassino2':
+                return Enemy('assassino2', (WIN_WIDTH + 10, random.randint(40, WIN_HEIGHT - 40)))

@@ -11,7 +11,7 @@ from code.Const import WIN_WIDTH, c_GREEN_FLUORESCENT, MENU_OPTION, C_WHITE, C_Y
 class Menu:
     def __init__(self, window):
         self.window = window
-        self.menu = pygame.image.load('./asset/fundo_menu.png').convert_alpha()
+        self.menu = pygame.image.load('./asset/menu.png').convert_alpha()
         self.rect = self.menu.get_rect(left=0, top=0)
 
     def run(self):

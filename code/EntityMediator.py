@@ -44,13 +44,13 @@ class EntityMediator:
 
     @staticmethod
     def __give_score(enemy: Enemy, entity_list: list[Entity]):
-        if enemy.last_dmg == 'Player1Shot':
+        if enemy.last_dmg == 'tiro_jogador1':
             for ent in entity_list:
-                if ent.name == 'Player1':
+                if ent.name == 'jogador1':
                     ent.score += enemy.score
-        elif enemy.last_dmg == 'Player2Shot':
+        elif enemy.last_dmg == 'tiro_jogador2':
             for ent in entity_list:
-                if ent.name == 'Player2':
+                if ent.name == 'jogador2':
                     ent.score += enemy.score
 
     @staticmethod
