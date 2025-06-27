@@ -27,13 +27,13 @@ ENTITY_SPEED = {
     'fase2-6': 6,
     'fase2-7': 7,
     'jogador1': 3,
-    'tiro_jogador1': 1,
+    'jogador1Shot': 1,
     'jogador2': 3,
-    'tiro_jogador2': 3,
+    'jogador2Shot': 3,
     'assassino1': 1,
-    'tiro_assassino1': 5,
+    'assassino1Shot': 5,
     'assassino2': 1,
-    'tiro_assassino2': 2,
+    'assassino2Shot': 2,
 }
 
 ENTITY_HEALTH = {
@@ -53,13 +53,13 @@ ENTITY_HEALTH = {
     'fase2-6': 999,
     'fase2-7': 999,
     'jogador1': 300,
-    'tiro_jogador1': 1,
+    'jogador1Shot': 1,
     'jogador2': 300,
-    'tiro_jogador2': 1,
+    'jogador2Shot': 1,
     'assassino1': 50,
-    'tiro_assassino1': 1,
+    'assassino1Shot': 1,
     'assassino2': 60,
-    'tiro_assassino2': 1,
+    'assassino2Shot': 1,
 }
 
 ENTITY_DAMAGE = {
@@ -79,13 +79,13 @@ ENTITY_DAMAGE = {
     'fase2-6': 0,
     'fase2-7': 0,
     'jogador1': 1,
-    'tiro_jogador1': 25,
+    'jogador1Shot': 25,
     'jogador2': 1,
-    'tiro_jogador2': 20,
+    'jogador2Shot': 20,
     'assassino1': 1,
-    'tiro_assassino1': 20,
+    'assassino1Shot': 20,
     'assassino2': 1,
-    'tiro_assassino2': 15,
+    'assassino2Shot': 15,
 }
 
 ENTITY_SCORE = {
@@ -105,13 +105,13 @@ ENTITY_SCORE = {
     'fase2-6': 0,
     'fase2-7': 0,
     'jogador1': 0,
-    'tiro_jogador1': 0,
+    'jogador1Shot': 0,
     'jogador2': 0,
-    'tiro_jogador2': 0,
+    'jogador2Shot': 0,
     'assassino1': 100,
-    'tiro_assassino1': 0,
+    'assassino1Shot': 0,
     'assassino2': 125,
-    'tiro_assassino2': 0,
+    'assassino2Shot': 0,
 }
 
 ENTITY_SHOT_DELAY = {
@@ -147,8 +147,8 @@ SPAWN_TIME = 4000
 TIMEOUT_STEP = 100  # 100ms
 TIMEOUT_LEVEL = 20000  # 20s
 # W
-WIN_WIDTH = 1020
-WIN_HEIGHT = 572
+WIN_WIDTH = 576
+WIN_HEIGHT = 324
 
 # S
 SCORE_POS = {'Title': (WIN_WIDTH / 2, 50),
