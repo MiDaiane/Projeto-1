@@ -24,14 +24,14 @@ class Menu:
             font_path = './asset/formato_letra.ttf'
             title_font = pygame.font.Font(font_path, 60)
 
-            self.menu_text(60, "Shadow", c_GREEN_FLUORESCENT, (WIN_WIDTH / 2, 100), shadow=True, font=title_font)
-            self.menu_text(60, "Hunter", c_GREEN_FLUORESCENT, (WIN_WIDTH / 2, 150), shadow=True, font=title_font)
+            self.menu_text(60, "Run or Kill", c_GREEN_FLUORESCENT, (WIN_WIDTH / 2, 60), shadow=True, font=title_font)
+            #self.menu_text(60, "Kill", c_GREEN_FLUORESCENT, (WIN_WIDTH / 2, 110), shadow=True, font=title_font)
 
             for i in range(len(MENU_OPTION)):
                 if i == menu_option:
-                    self.menu_text(30, MENU_OPTION[i], C_YELLOW, ((WIN_WIDTH / 2), 260 + 40 * i))
+                    self.menu_text(30, MENU_OPTION[i], C_YELLOW, ((WIN_WIDTH / 2), 150 + 28 * i))
                 else:
-                    self.menu_text(30, MENU_OPTION[i], C_WHITE, ((WIN_WIDTH / 2), 260 + 40 * i))
+                    self.menu_text(30, MENU_OPTION[i], C_WHITE, ((WIN_WIDTH / 2), 150 + 28 * i))
             pygame.display.flip()
 
             for event in pygame.event.get():
@@ -54,9 +54,9 @@ class Menu:
 
     def menu_text(self, text_size: int, text: str, text_color: tuple, text_center_pos: tuple, shadow: bool = False, font: pygame.font.Font = None):
         # text_font: Font = pygame.font.SysFont(name="Lucida Sans Typewriter", size=text_size)
-        text_font = pygame.font.SysFont("Lucida Sans Typewriter", text_size)
+        text_font = pygame.font.SysFont("courier new", text_size, bold=True)
         if font is None:
-            text_font = pygame.font.SysFont("Lucida Sans Typewriter", text_size)
+            text_font = pygame.font.SysFont("courier new", text_size, bold=True)
         else:
             text_font = font
 

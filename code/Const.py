@@ -6,6 +6,7 @@ C_YELLOW = (255, 255, 0)
 C_WHITE = (255, 255, 255)
 C_GREEN = (0, 128, 0)
 C_CYAN = (0, 128, 128)
+C_BLACK = (0, 0,0)
 
 # E
 EVENT_ENEMY = pygame.USEREVENT + 1
@@ -27,13 +28,13 @@ ENTITY_SPEED = {
     'fase2-6': 6,
     'fase2-7': 7,
     'jogador1': 3,
-    'jogador1Shot': 1,
+    'jogador1fogo': 1,
     'jogador2': 3,
-    'jogador2Shot': 3,
+    'jogador2fogo': 3,
     'assassino1': 1,
-    'assassino1Shot': 5,
-    'assassino2': 1,
-    'assassino2Shot': 2,
+    'assassino1fogo': 5,
+    'assassino2': 3,
+    'assassino2fogo': 2,
 }
 
 ENTITY_HEALTH = {
@@ -53,13 +54,13 @@ ENTITY_HEALTH = {
     'fase2-6': 999,
     'fase2-7': 999,
     'jogador1': 300,
-    'jogador1Shot': 1,
+    'jogador1fogo': 1,
     'jogador2': 300,
-    'jogador2Shot': 1,
+    'jogador2fogo': 1,
     'assassino1': 50,
-    'assassino1Shot': 1,
+    'assassino1fogo': 1,
     'assassino2': 60,
-    'assassino2Shot': 1,
+    'assassino2fogo': 1,
 }
 
 ENTITY_DAMAGE = {
@@ -79,13 +80,13 @@ ENTITY_DAMAGE = {
     'fase2-6': 0,
     'fase2-7': 0,
     'jogador1': 1,
-    'jogador1Shot': 25,
+    'jogador1fogo': 25,
     'jogador2': 1,
-    'jogador2Shot': 20,
+    'jogador2fogo': 20,
     'assassino1': 1,
-    'assassino1Shot': 20,
+    'assassino1fogo': 20,
     'assassino2': 1,
-    'assassino2Shot': 15,
+    'assassino2fogo': 15,
 }
 
 ENTITY_SCORE = {
@@ -105,13 +106,13 @@ ENTITY_SCORE = {
     'fase2-6': 0,
     'fase2-7': 0,
     'jogador1': 0,
-    'jogador1Shot': 0,
+    'jogador1fogo': 0,
     'jogador2': 0,
-    'jogador2Shot': 0,
+    'jogador2fogo': 0,
     'assassino1': 100,
-    'assassino1Shot': 0,
+    'assassino1fogo': 0,
     'assassino2': 125,
-    'assassino2Shot': 0,
+    'assassino2fogo': 0,
 }
 
 ENTITY_SHOT_DELAY = {
@@ -139,6 +140,10 @@ PLAYER_KEY_RIGHT = {'jogador1': pygame.K_RIGHT,
                     'jogador2': pygame.K_d}
 PLAYER_KEY_SHOOT = {'jogador1': pygame.K_RCTRL,
                     'jogador2': pygame.K_LCTRL}
+
+pygame.init()
+SHOT_SOUND = pygame.mixer.Sound('./asset/fogo.wav')
+SHOT_SOUND.set_volume(0.5)
 
 # S
 SPAWN_TIME = 4000

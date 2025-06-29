@@ -1,11 +1,8 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
 import random
 from code.Background import Background
 from code.Const import WIN_WIDTH, WIN_HEIGHT
 from code.Enemy import Enemy
 from code.Player import Player
-import pygame
 
 class EntityFactory:
 
@@ -14,20 +11,14 @@ class EntityFactory:
         match entity_name:
             case 'fase1':
                 list_bg = []
-                # img_sample = pygame.image.load('./asset/fase1-0.png')  # Uma imagem qualquer da fase
-                # bg_width = img_sample.get_width()
-
-                for i in range(7):  # level1bg images number
+                for i in range(7):
                     list_bg.append(Background(f'fase1-{i}', (0, 0)))
-                    list_bg.append(Background(f'fase1-{i}', (WIN_WIDTH, 0)))
-                    #list_bg.append(Background(f'fase1-{i}', (i * bg_width, 0)))
-                    #list_bg.append(Background(f'fase1-{i}', ((i + 7) * bg_width, 0)))  # Reserva   
-
+                    list_bg.append(Background(f'fase1-{i}', (WIN_WIDTH, 0)))   
 
                 return list_bg
             case 'fase2':
                 list_bg = []
-                for i in range(4):  # level2bg images number
+                for i in range(4):
                     list_bg.append(Background(f'fase2-{i}', (0, 0)))
                     list_bg.append(Background(f'fase2-{i}', (WIN_WIDTH, 0)))
                 return list_bg
@@ -36,6 +27,18 @@ class EntityFactory:
             case 'jogador2':
                 return Player('jogador2', (10, WIN_HEIGHT / 2 + 30))
             case 'assassino1':
-                return Enemy('assassino1', (WIN_WIDTH + 10, random.randint(40, WIN_HEIGHT - 40)))
+                enemy = Enemy('assassino1', (0, 0))
+                enemy_height = enemy.surf.get_height()
+                max_y = WIN_HEIGHT - enemy_height // 2
+                min_y = enemy_height // 2
+                enemy.rect.centerx = WIN_WIDTH + 10
+                enemy.rect.centery = random.randint(min_y, max_y)
+                return enemy
             case 'assassino2':
-                return Enemy('assassino2', (WIN_WIDTH + 10, random.randint(40, WIN_HEIGHT - 40)))
+                enemy = Enemy('assassino2', (0, 0))
+                enemy_height = enemy.surf.get_height()
+                max_y = WIN_HEIGHT - enemy_height // 2
+                min_y = enemy_height // 2
+                enemy.rect.centerx = WIN_WIDTH + 10
+                enemy.rect.centery = random.randint(min_y, max_y)
+                return enemy
