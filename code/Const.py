@@ -1,7 +1,7 @@
 # C
 import pygame
 
-c_GREEN_FLUORESCENT = (57, 255, 20)
+C_GREEN_FLUORESCENT = (57, 255, 20)
 C_YELLOW = (255, 255, 0)
 C_WHITE = (255, 255, 255)
 C_GREEN = (0, 128, 0)
@@ -33,7 +33,7 @@ ENTITY_SPEED = {
     'jogador2fogo': 3,
     'assassino1': 1,
     'assassino1fogo': 5,
-    'assassino2': 3,
+    'assassino2': 1,
     'assassino2fogo': 2,
 }
 
@@ -57,9 +57,9 @@ ENTITY_HEALTH = {
     'jogador1fogo': 1,
     'jogador2': 300,
     'jogador2fogo': 1,
-    'assassino1': 50,
+    'assassino1': 25,
     'assassino1fogo': 1,
-    'assassino2': 60,
+    'assassino2': 15,
     'assassino2fogo': 1,
 }
 

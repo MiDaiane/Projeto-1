@@ -1,19 +1,15 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
 import random
 import sys
-
 import pygame
 from pygame import Surface, Rect
 from pygame.font import Font
-from code.Const import C_WHITE, WIN_HEIGHT, MENU_OPTION, EVENT_ENEMY, SPAWN_TIME, C_GREEN, C_CYAN, EVENT_TIMEOUT, \
-    TIMEOUT_STEP, TIMEOUT_LEVEL
+from code.Const import C_WHITE, WIN_HEIGHT, MENU_OPTION, EVENT_ENEMY, SPAWN_TIME, C_BLACK, EVENT_TIMEOUT, \
+    TIMEOUT_STEP, TIMEOUT_LEVEL, ENTITY_SPEED, ENTITY_HEALTH, ENTITY_DAMAGE, ENTITY_SHOT_DELAY
 from code.Enemy import Enemy
 from code.Entity import Entity
 from code.EntityFactory import EntityFactory
 from code.EntityMediator import EntityMediator
 from code.Player import Player
-
 
 class Level:
     def __init__(self, window: Surface, name: str, game_mode: str, player_score: list[int]):
@@ -30,14 +26,16 @@ class Level:
             player = EntityFactory.get_entity('jogador2')
             player.score = player_score[1]
             self.entity_list.append(player)
+
         pygame.time.set_timer(EVENT_ENEMY, SPAWN_TIME)
-        pygame.time.set_timer(EVENT_TIMEOUT, TIMEOUT_STEP)  # 100ms
+        pygame.time.set_timer(EVENT_TIMEOUT, TIMEOUT_STEP)
 
     def run(self, player_score: list[int]):
         pygame.mixer_music.load(f'./asset/{self.name}.wav')
         pygame.mixer_music.set_volume(0.3)
         pygame.mixer_music.play(-1)
         clock = pygame.time.Clock()
+
         while True:
             clock.tick(60)
             self.window.fill((0, 0, 0))
@@ -49,16 +47,23 @@ class Level:
                     if shoot is not None:
                         self.entity_list.append(shoot)
                 if ent.name == 'jogador1':
-                    self.level_text(14, f'jogador1 - Health: {ent.health} | Score: {ent.score}', C_GREEN, (10, 25))
+                    self.level_text(14, f'Jogador 1 - Mago - Vidas: {ent.health} | Pontos: {ent.score}', C_BLACK, (10, 25))
                 if ent.name == 'jogador2':
-                    self.level_text(14, f'jogador2 - Health: {ent.health} | Score: {ent.score}', C_CYAN, (10, 45))
+                    self.level_text(14, f'Jogador 2 - Viking - Vidas: {ent.health} | Pontos: {ent.score}', C_BLACK, (10, 45))
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
                 if event.type == EVENT_ENEMY:
-                    choice = random.choice(('assassino1', 'assassino2'))
-                    self.entity_list.append(EntityFactory.get_entity(choice))
+                    if self.name == 'fase2':
+                        for _ in range(2):  # dois inimigos por evento
+                            choice = random.choice(['assassino1', 'assassino2'])
+                            self.entity_list.append(EntityFactory.get_entity(choice))
+                    else:
+                        choice = random.choice(['assassino1', 'assassino2'])
+                        self.entity_list.append(EntityFactory.get_entity(choice))
+                    #choice = random.choice(('assassino1', 'assassino2'))
+                    #self.entity_list.append(EntityFactory.get_entity(choice))
                 if event.type == EVENT_TIMEOUT:
                     self.timeout -= TIMEOUT_STEP
                     if self.timeout == 0:
@@ -77,12 +82,11 @@ class Level:
                 if not found_player:
                     return False
 
-            # printed text
-            self.level_text(14, f'{self.name} - Timeout: {self.timeout / 1000:.1f}s', C_WHITE, (10, 5))
-            self.level_text(14, f'fps: {clock.get_fps():.0f}', C_WHITE, (10, WIN_HEIGHT - 35))
-            self.level_text(14, f'entidades: {len(self.entity_list)}', C_WHITE, (10, WIN_HEIGHT - 20))
+            self.level_text(14, f'{self.name} - Time: {self.timeout / 1000:.1f}s', C_WHITE, (10, 5))
+            self.level_text(14, f'FPS: {clock.get_fps():.0f}', C_WHITE, (10, WIN_HEIGHT - 35))
+            self.level_text(14, f'Entidades: {len(self.entity_list)}', C_WHITE, (10, WIN_HEIGHT - 20))
             pygame.display.flip()
-            # Collisions
+
             EntityMediator.verify_collision(entity_list=self.entity_list)
             EntityMediator.verify_health(entity_list=self.entity_list)
 

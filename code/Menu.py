@@ -5,7 +5,7 @@ import pygame.image
 from pygame import Surface, Rect
 from pygame.font import Font
 
-from code.Const import WIN_WIDTH, c_GREEN_FLUORESCENT, MENU_OPTION, C_WHITE, C_YELLOW
+from code.Const import WIN_WIDTH, C_GREEN_FLUORESCENT, MENU_OPTION, C_WHITE, C_YELLOW
 
 
 class Menu:
@@ -24,7 +24,7 @@ class Menu:
             font_path = './asset/formato_letra.ttf'
             title_font = pygame.font.Font(font_path, 60)
 
-            self.menu_text(60, "Run or Kill", c_GREEN_FLUORESCENT, (WIN_WIDTH / 2, 60), shadow=True, font=title_font)
+            self.menu_text(60, "Run or Kill", C_GREEN_FLUORESCENT, (WIN_WIDTH / 2, 60), shadow=True, font=title_font)
             #self.menu_text(60, "Kill", c_GREEN_FLUORESCENT, (WIN_WIDTH / 2, 110), shadow=True, font=title_font)
 
             for i in range(len(MENU_OPTION)):
