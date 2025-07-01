@@ -1,4 +1,3 @@
-# C
 import pygame
 
 C_GREEN_FLUORESCENT = (57, 255, 20)
@@ -7,8 +6,8 @@ C_WHITE = (255, 255, 255)
 C_GREEN = (0, 128, 0)
 C_CYAN = (0, 128, 128)
 C_BLACK = (0, 0,0)
+C_RED = (255, 0, 0)
 
-# E
 EVENT_ENEMY = pygame.USEREVENT + 1
 EVENT_TIMEOUT = pygame.USEREVENT + 2
 ENTITY_SPEED = {
@@ -31,9 +30,9 @@ ENTITY_SPEED = {
     'jogador1fogo': 1,
     'jogador2': 3,
     'jogador2fogo': 3,
-    'assassino1': 1,
+    'assassino1': 3,
     'assassino1fogo': 5,
-    'assassino2': 1,
+    'assassino2': 3,
     'assassino2fogo': 2,
 }
 
@@ -111,25 +110,23 @@ ENTITY_SCORE = {
     'jogador2fogo': 0,
     'assassino1': 100,
     'assassino1fogo': 0,
-    'assassino2': 125,
+    'assassino2': 100,
     'assassino2fogo': 0,
 }
 
 ENTITY_SHOT_DELAY = {
     'jogador1': 20,
-    'jogador2': 15,
-    'assassino1': 100,
-    'assassino2': 200,
+    'jogador2': 20,
+    'assassino1': 40,
+    'assassino2': 60,
 }
 
-# M
 MENU_OPTION = ('NOVO JOGO - UM JOGADOR',
                'NOVO JOGO - DOIS JOGADORES',
                'NOVO JOGO - COMPETITIVO',
                'PONTUAÇÃO',
                'SAIR')
 
-# P
 PLAYER_KEY_UP = {'jogador1': pygame.K_UP,
                  'jogador2': pygame.K_w}
 PLAYER_KEY_DOWN = {'jogador1': pygame.K_DOWN,
@@ -145,17 +142,14 @@ pygame.init()
 SHOT_SOUND = pygame.mixer.Sound('./asset/fogo.wav')
 SHOT_SOUND.set_volume(0.5)
 
-# S
 SPAWN_TIME = 4000
 
-# T
-TIMEOUT_STEP = 100  # 100ms
-TIMEOUT_LEVEL = 20000  # 20s
-# W
+TIMEOUT_STEP = 100
+TIMEOUT_LEVEL = 20000
+
 WIN_WIDTH = 576
 WIN_HEIGHT = 324
 
-# S
 SCORE_POS = {'Title': (WIN_WIDTH / 2, 50),
              'EnterName': (WIN_WIDTH / 2, 80),
              'Label': (WIN_WIDTH / 2, 90),

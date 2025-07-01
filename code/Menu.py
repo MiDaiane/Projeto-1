@@ -1,12 +1,7 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
 import pygame.image
 from pygame import Surface, Rect
 from pygame.font import Font
-
 from code.Const import WIN_WIDTH, C_GREEN_FLUORESCENT, MENU_OPTION, C_WHITE, C_YELLOW
-
 
 class Menu:
     def __init__(self, window):
@@ -19,13 +14,11 @@ class Menu:
         pygame.mixer_music.load('./asset/musica_menu.flac')
         pygame.mixer_music.play(-1)
         while True:
-            # DRAW IMAGES
             self.window.blit(source=self.menu, dest=self.rect)
             font_path = './asset/formato_letra.ttf'
             title_font = pygame.font.Font(font_path, 60)
 
             self.menu_text(60, "Run or Kill", C_GREEN_FLUORESCENT, (WIN_WIDTH / 2, 60), shadow=True, font=title_font)
-            #self.menu_text(60, "Kill", c_GREEN_FLUORESCENT, (WIN_WIDTH / 2, 110), shadow=True, font=title_font)
 
             for i in range(len(MENU_OPTION)):
                 if i == menu_option:
@@ -44,16 +37,15 @@ class Menu:
                             menu_option += 1
                         else:
                             menu_option = 0
-                    if event.key == pygame.K_UP:  # UP KEY
+                    if event.key == pygame.K_UP:
                         if menu_option > 0:
                             menu_option -= 1
                         else:
                             menu_option = len(MENU_OPTION) - 1
-                    if event.key == pygame.K_RETURN:  # ENTER
+                    if event.key == pygame.K_RETURN:
                         return MENU_OPTION[menu_option]
 
     def menu_text(self, text_size: int, text: str, text_color: tuple, text_center_pos: tuple, shadow: bool = False, font: pygame.font.Font = None):
-        # text_font: Font = pygame.font.SysFont(name="Lucida Sans Typewriter", size=text_size)
         text_font = pygame.font.SysFont("courier new", text_size, bold=True)
         if font is None:
             text_font = pygame.font.SysFont("courier new", text_size, bold=True)

@@ -3,8 +3,7 @@ import sys
 import pygame
 from pygame import Surface, Rect
 from pygame.font import Font
-from code.Const import C_WHITE, WIN_HEIGHT, MENU_OPTION, EVENT_ENEMY, SPAWN_TIME, C_BLACK, EVENT_TIMEOUT, \
-    TIMEOUT_STEP, TIMEOUT_LEVEL, ENTITY_SPEED, ENTITY_HEALTH, ENTITY_DAMAGE, ENTITY_SHOT_DELAY
+from code.Const import MENU_OPTION, EVENT_ENEMY, SPAWN_TIME, C_BLACK, EVENT_TIMEOUT, TIMEOUT_STEP, TIMEOUT_LEVEL
 from code.Enemy import Enemy
 from code.Entity import Entity
 from code.EntityFactory import EntityFactory
@@ -56,14 +55,12 @@ class Level:
                     sys.exit()
                 if event.type == EVENT_ENEMY:
                     if self.name == 'fase2':
-                        for _ in range(2):  # dois inimigos por evento
+                        for _ in range(2):
                             choice = random.choice(['assassino1', 'assassino2'])
                             self.entity_list.append(EntityFactory.get_entity(choice))
                     else:
                         choice = random.choice(['assassino1', 'assassino2'])
                         self.entity_list.append(EntityFactory.get_entity(choice))
-                    #choice = random.choice(('assassino1', 'assassino2'))
-                    #self.entity_list.append(EntityFactory.get_entity(choice))
                 if event.type == EVENT_TIMEOUT:
                     self.timeout -= TIMEOUT_STEP
                     if self.timeout == 0:
@@ -82,16 +79,14 @@ class Level:
                 if not found_player:
                     return False
 
-            self.level_text(14, f'{self.name} - Time: {self.timeout / 1000:.1f}s', C_WHITE, (10, 5))
-            self.level_text(14, f'FPS: {clock.get_fps():.0f}', C_WHITE, (10, WIN_HEIGHT - 35))
-            self.level_text(14, f'Entidades: {len(self.entity_list)}', C_WHITE, (10, WIN_HEIGHT - 20))
+            self.level_text(14, f'{self.name} - Time: {self.timeout / 1000:.1f}s', C_BLACK, (10, 5))
             pygame.display.flip()
 
             EntityMediator.verify_collision(entity_list=self.entity_list)
             EntityMediator.verify_health(entity_list=self.entity_list)
 
     def level_text(self, text_size: int, text: str, text_color: tuple, text_pos: tuple):
-        text_font: Font = pygame.font.SysFont(name="Lucida Sans Typewriter", size=text_size)
+        text_font: Font = pygame.font.SysFont(name="courier new", size=text_size)
         text_surf: Surface = text_font.render(text, True, text_color).convert_alpha()
         text_rect: Rect = text_surf.get_rect(left=text_pos[0], top=text_pos[1])
         self.window.blit(source=text_surf, dest=text_rect)

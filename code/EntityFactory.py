@@ -5,7 +5,6 @@ from code.Enemy import Enemy
 from code.Player import Player
 
 class EntityFactory:
-
     @staticmethod
     def get_entity(entity_name: str):
         match entity_name:

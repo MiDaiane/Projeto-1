@@ -3,7 +3,7 @@ from datetime import datetime
 import pygame
 from pygame import Surface, Rect, KEYDOWN, K_RETURN, K_BACKSPACE, K_ESCAPE
 from pygame.font import Font
-from code.Const import SCORE_POS, MENU_OPTION, C_BLACK, C_GREEN, C_GREEN_FLUORESCENT
+from code.Const import SCORE_POS, MENU_OPTION, C_BLACK, C_GREEN, C_RED
 from code.DBProxy import DBProxy
 
 class Score:
@@ -21,19 +21,19 @@ class Score:
         while True:
             self.window.blit(source=self.surf, dest=self.rect)
             self.score_text(30, 'PARABÉNS, VOCÊ VENCEU!!!', C_GREEN, SCORE_POS['Title'])
-            text = 'Insira seu nome (4 caracteres):'
+            text = 'Insira seu nome: (máx. 10 caracteres)'
             score = player_score[0]
             if game_mode == MENU_OPTION[0]:
                 score = player_score[0]
             if game_mode == MENU_OPTION[1]:
-                score = (player_score[0] + player_score[1]) / 2
-                text = 'Insira o nome da dupla (4 caracteres):'
+                score = (player_score[0] + player_score[1]) // 2
+                text = 'Insira o nome da dupla (máx. 10 caracteres):'
             if game_mode == MENU_OPTION[2]:
                 if player_score[0] >= player_score[1]:
                     score = player_score[0]
                 else:
                     score = player_score[1]
-                    text = 'Insira o nome do jogador 2 (4 caracteres):'
+                    text = 'Insira o nome do jogador 2 (máx. 10 caracteres):'
             self.score_text(20, text, C_BLACK, SCORE_POS['EnterName'])
 
             for event in pygame.event.get():
@@ -41,14 +41,14 @@ class Score:
                     pygame.quit()
                     sys.exit()
                 elif event.type == KEYDOWN:
-                    if event.key == K_RETURN and len(name) == 4:
-                        db_proxy.save({'name': name, 'score': score, 'date': get_formatted_date()})
+                    if event.key == K_RETURN and len(name) <= 10:
+                        db_proxy.save({'nome': name, 'pontuacao': score, 'data': get_formatted_date()})
                         self.show()
                         return
                     elif event.key == K_BACKSPACE:
                         name = name[:-1]
                     else:
-                        if len(name) < 4:
+                        if len(name) < 10:
                             name += event.unicode
             self.score_text(20, name, C_BLACK, SCORE_POS['Name'])
             pygame.display.flip()
@@ -58,8 +58,8 @@ class Score:
         pygame.mixer_music.load('./asset/musica_pontuacao.mp3')
         pygame.mixer_music.play(-1)
         self.window.blit(source=self.surf, dest=self.rect)
-        self.score_text(48, 'TOP 10 PONTUAÇÃO', C_GREEN_FLUORESCENT, SCORE_POS['Title'])
-        self.score_text(20, 'NAME     SCORE           DATE      ', C_GREEN, SCORE_POS['Label'])
+        self.score_text(48, 'TOP 10 PONTUAÇÃO', C_GREEN, SCORE_POS['Title'])
+        self.score_text(20, '  NOME   PONTUAÇÃO      DATA/HORA     ', C_RED, SCORE_POS['Label'])
         db_proxy = DBProxy('DBScore')
         list_score = db_proxy.retrieve_top10()
         db_proxy.close()
@@ -89,4 +89,4 @@ def get_formatted_date():
     current_datetime = datetime.now()
     current_time = current_datetime.strftime("%H:%M")
     current_date = current_datetime.strftime("%d/%m/%y")
-    return f"{current_time} - {current_date}"
+    return f"{current_date} - {current_time}"
