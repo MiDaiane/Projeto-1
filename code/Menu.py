@@ -18,7 +18,7 @@ class Menu:
             font_path = './asset/formato_letra.ttf'
             title_font = pygame.font.Font(font_path, 60)
 
-            self.menu_text(60, "Run or Kill", C_GREEN_FLUORESCENT, (WIN_WIDTH / 2, 60), shadow=True, font=title_font)
+            self.menu_text(60, "Corra, Atire e Fuja", C_GREEN_FLUORESCENT, (WIN_WIDTH / 2, 60), shadow=True, font=title_font)
 
             for i in range(len(MENU_OPTION)):
                 if i == menu_option:
